@@ -1,0 +1,863 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap');
+$Red: hsl(0, 94%, 66%);
+$Blue: hsl(231, 69%, 60%);
+$DarkBlue: hsl(229, 31%, 21%);
+$Gray: hsl(229, 8%, 60%);
+$LightGray: hsla(3, 16%, 77%, 0.3);
+$White: hsl(0, 0%, 100%);
+$BoxShadow: 0px 2px 10px -3px rgba(0, 0, 0, 0.2);
+$MaxWidth: 1024px;
+
+@mixin for_mobile{
+  @media(max-width: 1023px){
+    @content;
+  }
+}
+
+@mixin for_desktop{
+  @media(min-width: 1024px){
+    @content;
+  }
+}
+
+@mixin btn_settings($color, $border, $background){
+  color: $color;
+  border-color: $border;
+  background-color: $background;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none;
+  color: inherit;
+  font-weight: inherit;
+  background-color: transparent;
+  font-size: 18px;
+  color: $Gray;
+  font-family: 'Rubik', sans-serif;
+  letter-spacing: 2px;
+}
+
+#root{
+  width: 100%;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+body{
+  line-height: 1.5;
+  font-weight: 400;
+  background-color: $White;
+}
+button{
+  cursor: pointer;
+}
+
+h1,h2,h3{
+  font-weight: 500;
+  color: $DarkBlue;
+}
+
+h1{
+  font-size: 32px;
+}
+
+h2{
+  font-size: 26px;
+}
+
+h3{
+  font-size: 18px;
+}
+
+input[type='radio']{
+  visibility: hidden;
+  opacity: 0;
+  display: none;
+}
+
+li{
+  list-style-type: none;
+}
+
+img{
+  display: block;
+}
+
+main{
+  padding: 1rem;
+}
+
+.container{
+  max-width: 1024px;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 2rem;
+  margin: 0 auto;
+
+}
+
+/*-------------------------------------------------------------
+LAYOUT
+-------------------------------------------------------------*/
+.layout{
+  display: flex;
+  column-gap: 2rem;
+  flex-direction: column;
+
+  @include for_desktop{
+    .text-block{
+      text-align: left;
+    }
+  }
+
+  img{
+    max-width: 580px;
+    margin: 0 auto;
+  }
+}
+
+/*-------------------------------------------------------------
+HEADER
+-------------------------------------------------------------*/
+header{
+  height: 97px;
+  nav{
+   & > div{
+     display: flex;
+     justify-content: space-between;
+     align-items: center;  
+   }
+   padding: 2rem;
+ 
+   menu{
+     display: none;
+   }
+  }
+ 
+  .nav-open{
+   @include for_mobile{
+     position: fixed;
+     left: 0;
+     top: 0;
+     height: 100vh;
+     width: 100%;
+     background-color: hsl(229, 31%, 21%, 0.9);
+     z-index: 20;
+ 
+     .header-logo{
+       g{
+         path{
+           fill: $White;
+         }
+ 
+         g{
+           circle{
+             fill: $White;
+           }
+           path{
+             fill: $DarkBlue
+           }
+         }
+       }
+     }
+ 
+     menu{
+       padding-top: 2rem;
+       display: flex;
+       flex-direction: column;
+       width: 100%;
+       height: 100%;
+ 
+       li{
+         width: 100%;
+         border-top: 1px solid $LightGray;
+ 
+         a{
+           display: inline-block;
+           width: 100%;
+           padding: 1rem;
+           text-align: center;
+           color: $White;
+         }
+ 
+         &:hover{
+           a{
+             color: $Red;
+           }
+         }
+       }
+ 
+       .login{
+         padding: 1rem;
+ 
+         &:hover{
+           a{
+             border-color: $Red;
+             color: $Red;
+           }
+         }
+ 
+         a{
+           border: 2px solid $White;
+           border-radius: 6px;
+           padding: 0.5rem 1rem;
+         }
+       }
+ 
+       .header-socials{
+         padding: 2rem;
+         margin-top: auto;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         column-gap: 2rem;
+ 
+         a:hover{
+           svg path{
+             fill: $Red;
+           }
+         }
+       } 
+     }
+   }
+  }
+ 
+  @include for_desktop{
+   nav{
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     max-width: $MaxWidth;
+     margin: 0 auto;
+ 
+     & > div button{
+       display: none;
+     }
+   
+     menu{
+       display: flex;
+       flex-direction: row;
+       column-gap: 2rem;
+       align-items: center;
+ 
+       .header-socials{
+         display: none;
+       }
+ 
+       li:hover{
+         a{
+           color: $Red;
+         }
+       }
+ 
+       .login{
+         border: 3px solid $Red;
+         background-color: $Red;
+         border-radius: 6px;
+         
+         a{
+           display: inline-block;
+           color: $White;
+           padding: 0.5rem;
+           border: none;
+           margin: 0;
+         }
+ 
+         &:hover{
+           background-color: $White;
+           cursor: pointer;
+         }
+       }
+     }
+    }
+   }
+}
+
+/*-------------------------------------------------------------
+START
+-------------------------------------------------------------*/
+.start{
+  flex-direction: column-reverse;
+  max-width: $MaxWidth;
+  margin: 0 auto;
+  padding: 3rem 0;
+
+  .start-row-1{
+    margin: 0 auto;
+
+    .text-block h1{
+      font-size: 36px;
+      letter-spacing: 0px;
+    }
+
+    &__btn-box{
+      display: flex;
+      gap: 1rem;
+      padding: 1rem;
+
+      .btn{
+        width: 100%;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        font-size: 14px;
+        letter-spacing: 0px;
+      }
+    }
+  }
+
+  .start-row-2{
+    position: relative;
+    margin-bottom: 2rem;
+
+    &__image{
+      position: relative;
+      z-index: 9;
+      width: 100%;
+    }
+
+    &__shape{
+      position: absolute;
+      bottom: 1rem;
+      right: -25%;
+      height: 75%;
+      width: 100%;
+
+      @include for_desktop{
+        right: -30%;
+      }
+    }
+  }
+
+  @include for_desktop{
+    flex-direction: row;
+
+    .start-row-1, .start-row-2{
+      width: 50%;
+    }
+
+    .start-row-1{
+      &__btn-box{
+        .btn{
+          padding: auto;
+          font-size: inherit;
+        }
+      }
+
+      .text-block h1{
+        letter-spacing: auto;
+      }
+    }
+
+    .start-row-2{
+      margin-bottom: 0px;
+    }
+  }
+}
+
+/*-------------------------------------------------------------
+FEATURES
+-------------------------------------------------------------*/
+.features{
+  &-radio{
+    width: 100%;
+    &__item{
+      border-bottom: 1px solid $LightGray;
+      
+      &:first-child{
+        border-top: 1px solid $LightGray;
+      }
+    }
+
+    @include for_desktop{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      &__item:first-child{
+        border-top: none;
+      }
+    }
+  }
+
+  &-box{
+    &-row-1{
+      margin-bottom: 6rem;
+      position: relative;
+
+      @include for_desktop{
+        margin-bottom: 0;
+      }
+
+      &__image{
+        position: relative;
+        z-index: 9;
+        width: 100%;
+      }
+  
+      &__shape{
+        position: absolute;
+        z-index: 8;
+        bottom: -2rem;
+        left: -25%;
+        width: 100%;
+        height: 75%;
+        
+        @include for_desktop{
+          left: -30%;
+        }
+      }
+    }
+
+    &-row-2{
+      button{
+        display: none;
+      }
+    }
+
+    @include for_desktop{
+      flex-direction: row;
+
+      &-row-1, &-row-2{
+        width: 50%;
+      }
+
+      &-row-2 button{
+        display: block;
+        margin: 1rem;
+      }
+    }
+  }
+}
+
+/*-------------------------------------------------------------
+EXTENSIONS
+-------------------------------------------------------------*/
+.extensions{
+  &-box{
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+
+    @include for_desktop{
+      flex-direction: row;
+      column-gap: 2rem;
+      margin: 2rem 0;
+
+      .extension-card{
+        &:first-child{
+          transform: translateY(-2.8rem);
+        }
+        &:last-child{
+          transform: translateY(2.8rem);
+        }
+      }
+    }
+  }
+}
+
+/*-------------------------------------------------------------
+QUESTIONS
+-------------------------------------------------------------*/
+.questions{
+  &-accordion{
+    max-width: 680px;
+
+    .accordion-item{
+      border-top: 1px solid $LightGray;
+
+      &:last-child{
+        border-bottom: 1px solid $LightGray
+      }
+    }
+  }
+}
+
+/*-------------------------------------------------------------
+CONTACT FORM
+-------------------------------------------------------------*/
+.contact-form{
+  background-color: $Blue;
+  padding: 0rem 2rem;
+
+  form{
+    max-width: 480px;
+    width: 100%;
+
+    .btn{
+      width: 100%;
+    }
+  
+    @include for_desktop{
+      display: flex;
+      align-items: flex-start;
+      column-gap: 1rem;
+      justify-content: space-between;
+
+      .btn{
+        width: 54%;
+      }
+    }
+  }
+
+  &__input{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 3px solid transparent;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+
+    input{
+      background-color: $White;
+      padding: 0.85rem 1rem;
+      border-radius: 6px;
+      outline: none;
+      color: $DarkBlue;
+
+      &::placeholder{
+        color: $Gray;
+      }
+    }
+  }
+
+  .error{
+    .contact-form__input{
+      background-color: $Red;
+      position: relative;
+      margin-bottom: 0;
+
+      svg{
+        position: absolute;
+        top: 0.9rem;
+        right: 0.9rem;
+      }
+
+      p{
+        font-style: italic;
+        padding: 0.35rem 0.5rem;
+        font-size: 12px;
+        color: $White;
+      }
+    }
+  }
+  
+  h2{
+    color: $White;
+    max-width: 460px;
+    text-align: center;
+  }
+}
+
+/*-------------------------------------------------------------
+FOOTER
+-------------------------------------------------------------*/
+footer{
+  background-color: $DarkBlue;
+  padding: 2rem;
+
+  a{
+    color: $White;
+
+    &:hover{
+      color: $Red;
+    }
+  }
+
+  @include for_desktop{
+    .container{
+      flex-direction: row;
+      column-gap: 2rem;
+      padding: 0;
+    }
+  }
+}
+
+.footer-logo{
+  g path{
+    fill: $White;
+  }
+}
+
+.footer-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 2rem;
+
+  svg:hover{
+    path{
+      fill: $Red;
+    }
+  }
+
+  @include for_desktop{
+    margin-left: auto;
+  }
+}
+
+/*-------------------------------------------------------------
+ACCORDION ITEM
+-------------------------------------------------------------*/
+.accordion-item{
+  width: 100%;
+
+  &-row-1{
+    padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    svg{
+      overflow: visible;
+      transition: transform 0.2s ease-in-out;
+      margin-right: 0.75rem;
+    }
+
+    &:hover{
+      cursor: pointer;
+      h3{
+        color: $Red;
+      }
+    }
+  }
+
+  &-row-2{
+    max-height: 0;
+    transition: max-height 0.3s ease-in-out;
+    overflow-y: hidden;
+
+    p{
+      padding-bottom: 1rem;
+    }
+  }
+
+  &__active{
+    .accordion-item-row-1{
+      svg{
+        transform: rotate(180deg);
+      
+        path {
+          stroke: $Red;
+        }
+      }
+    }
+
+    .accordion-item-row-2{
+      max-height: 800px;
+    }
+  }
+}
+
+/*-------------------------------------------------------------
+EXTENSION CARD
+-------------------------------------------------------------*/
+.extension-card{
+  box-shadow: $BoxShadow;
+  max-width: 340px;
+
+  &-row-1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem 1.5rem;
+
+    img{
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  &-row-2{
+    padding: 1.5rem;
+    background-image: url('images/bg-dots.svg');
+    background-repeat: repeat-x;
+    background-position: top center;
+
+    button{
+      font-size: 14px;
+      width: 100%;
+    }
+  }
+}
+
+/*-------------------------------------------------------------
+TEXT BLOCK
+-------------------------------------------------------------*/
+.text-block{
+  max-width: 680px;
+  text-align: center;
+  padding: 1rem;
+
+  h1{
+    margin-bottom: 1rem;
+  }
+}
+
+/*-------------------------------------------------------------
+FEATURES RADIO
+-------------------------------------------------------------*/
+.features-radio__item{
+  width: 100%;
+  label{
+    position: relative;
+    display: block;
+    text-align: center;
+    width: 100%;
+    padding: 1rem;
+    
+    h3{
+      font-weight: 400;
+      color: $Gray;
+    }
+
+    &:hover{
+      cursor: pointer;
+
+      h3{
+        color: $Red !important;
+      }
+    }
+  }
+
+  input[type='radio']:checked + label{
+    h3{
+      color: $DarkBlue;
+    }
+
+    &::before{
+      content: ' ';
+      position: absolute;
+      bottom: 0;
+      left: 33.3%;
+      width: 33.4%;
+      height: 4px;
+      background-color: $Red;
+    
+      @include for_desktop{
+        width: 100%;
+        left: 0;
+      }
+    }
+  }
+}
+
+/*-------------------------------------------------------------
+BUTTONS
+-------------------------------------------------------------*/
+.btn{
+  background-color: $White;
+  box-shadow: $BoxShadow;
+  width: fit-content;
+  padding: 0.75rem 0.9rem;
+  border-radius: 6px;
+  border: 3px solid $White;
+  color: $DarkBlue;
+  font-weight: 500;
+
+  &:hover{
+    border-color: $DarkBlue;
+  }
+
+  &-main{
+    @include btn_settings($White, $Blue, $Blue);
+
+    &:hover{
+      @include btn_settings($Blue, $Blue, $White);
+    }
+  }
+
+  &-special{
+    @include btn_settings($White, $Red, $Red);
+
+    &:hover{
+      @include btn_settings($Red, $Red, $White);
+    }
+  }
+}
+/*-------------------------------------------------------------
+COUNTER
+-------------------------------------------------------------*/
+.counter{
+  letter-spacing: 5px;
+  color: $White;
+  text-align: center;
+}
+
+/*-------------------------------------------------------------
+MODAL
+-------------------------------------------------------------*/
+.background{
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+  width: 100%;
+  max-height: 0px;
+  padding: 0rem;
+  background-color: hsl(229, 31%, 21%, 0.9);
+  display: flex;
+  align-items: flex-start;
+}
+
+.modal{
+  margin: 0rem auto;
+  width: 100%;
+  max-width: $MaxWidth;
+  background-color: $White;
+  padding: 1rem;
+  box-shadow: $BoxShadow;
+  border-radius: 6px;
+  position: relative;
+  transform: translateY(-100vh);
+
+  &-row-2{
+    text-align: center;
+  }
+
+  &-button{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+
+    path{
+      fill: $DarkBlue;
+    }
+  }
+
+  &-row-1{
+    img{
+      width: 100%;
+    }
+  }
+
+  @include for_desktop(){
+    flex-direction: row;
+
+    &-row-1, &-row-2{
+      width: 50%;
+    }
+
+    &-row-2{
+      text-align: left;
+      button{
+        margin: 1rem;
+      }
+    }
+  }
+}
+
+.modal-active{
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.modal-active .modal{
+  transform: translateY(0);
+  transition: transform 0.3s ease-in;
+}
